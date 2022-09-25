@@ -1,0 +1,221 @@
+/*order form*/
+
+.orderForm {
+    margin: 30px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: -2px 3px 1px #D3D3D3;
+    border: 1px solid #D3D3D3;
+}
+
+form.orderForm input[type=text] {
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid grey;
+    background-color: lavender;
+    width: 300px;
+    height: 30px;
+}
+
+form.orderForm input[type=number] {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid grey;
+    background-color: lavender;
+    height: 30px;
+    width: 110px;
+}
+
+form.orderForm select {
+    margin: 10px;
+    padding: 5x;
+    border: 2px solid grey;
+    background-color: lavender;
+    height: 30px;
+    width: 110px;
+}
+
+form.orderForm input[type=date] {
+    background-color: lavender;
+    border-radius: 8px;
+    border: 2px solid grey;
+    width: 185px;
+    height: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
+form.orderForm label {
+    margin: 10px;
+}
+
+
+/* order form button*/
+
+.orderbtn {
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    border-style: outset;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px 16px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration-color: white;
+    text-decoration-line: none;
+}
+
+.orderbtn:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a:link,
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+
+/* order table*/
+
+.order-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.order-table thead tr {
+    background-color: blueviolet;
+    color: #ffffff;
+    text-align: left;
+}
+
+.order-table th,
+.order-table td {
+    padding: 12px 15px;
+}
+
+.order-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.order-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.order-table tbody tr:last-of-type {
+    border-bottom: 2px solid blueviolet;
+}
+
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    font-weight: 300;
+    -webkit-transition: all 0.15s;
+    -moz-transition: all 0.15s;
+    transition: all 0.15s;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:hover,
+.btn:focus {
+    color: #2b2b2b;
+    text-decoration: none;
+}
+
+.btn-submit {
+    color: #ffffff;
+    background-color: blueviolet;
+    border-color: blueviolet;
+    font-size: 18px;
+}
+
+.btn-submit:hover,
+.btn-submit:focus,
+.btn-submit:active,
+.btn-submit.active,
+.open .dropdown-toggle.btn-submit {
+    color: blueviolet;
+    background: transparent;
+    border-color: blueviolet;
+}
+
+.btn-submit {
+    color: #ffffff;
+    background-color: blueviolet;
+    border-color: blueviolet;
+    font-size: 18px;
+}
+
+.btn-danger {
+    color: #ffffff;
+    background-color: #ff2d55;
+    border-color: #ff2d55;
+    font-size: 18px;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active,
+.btn-danger.active,
+.open .dropdown-toggle.btn-danger {
+    color: #ff2d55;
+    background: transparent;
+    border-color: #ff2d55;
+}
+
+.btn-info {
+    color: #ffffff;
+    background-color: #34aadc;
+    border-color: #34aadc;
+}
+
+.btn-info:hover,
+.btn-info:focus,
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+    color: #34aadc;
+    background: transparent;
+    border-color: #34aadc;
+}
+
+.btn-info:active,
+.btn-info.active,
+.open .dropdown-toggle.btn-info {
+    background-image: none;
+}

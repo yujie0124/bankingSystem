@@ -1,0 +1,189 @@
+/*product*/
+
+.addproduct {
+    margin: 30px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 80px;
+    padding-right: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: -2px 3px 1px #D3D3D3;
+    border: 1px solid #D3D3D3;
+}
+
+form.addproduct input[type=text] {
+    padding: 10px;
+    margin: 10px;
+    background-color: lavender;
+    height: 30px;
+    text-align: top;
+}
+
+form.addproduct input[type=submit] {
+    background-color: #045BBC;
+    color: white;
+    border: none;
+    border-style: outset;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px 16px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+form.addproduct input[type=number] {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid grey;
+    background-color: lavender;
+    height: 30px;
+}
+
+
+/*supplier*/
+
+.addsupplier {
+    margin: 30px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 80px;
+    padding-right: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: -2px 3px 1px #D3D3D3;
+    border: 1px solid #D3D3D3;
+}
+
+form.addsupplier input[type=text] {
+    padding: 10px;
+    margin: 10px;
+    background-color: lavender;
+    height: 30px;
+    text-align: top;
+}
+
+form.addsupplier input[type=submit] {
+    background-color: #045BBC;
+    color: white;
+    border: none;
+    border-style: outset;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px 16px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+form.addsupplier input[type=number] {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid grey;
+    background-color: lavender;
+    height: 30px;
+}
+
+
+/*table*/
+
+.product-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-table thead tr {
+    background-color: #045BBC;
+    color: #ffffff;
+    text-align: left;
+}
+
+.product-table th,
+.product-table td {
+    padding: 12px 15px;
+    width: 1%;
+}
+
+.product-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.product-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.product-table tbody tr:last-of-type {
+    border-bottom: 2px solid #045BBC;
+}
+
+.product-table tbody tr.active-row {
+    font-weight: bold;
+    color: #045BBC;
+}
+
+button.edit_button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-style: outset;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px 16px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button.delete_button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-style: outset;
+    border-radius: 8px;
+    text-align: center;
+    padding: 10px 16px;
+    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+button.edit_button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button.delete_button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+a.delete {
+    color: white;
+    text-decoration: none;
+}
+
+a.edit {
+    color: white;
+    text-decoration: none;
+}
