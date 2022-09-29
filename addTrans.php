@@ -248,20 +248,20 @@ if(isset($_POST['add'])){
                             <td>
                                 <p>Investment Accounts</p>
                             </td>
-                            <td><b>
-                                    <?php 
+                            <td>
+                                <?php 
                                 $query = "SELECT * FROM bankacc WHERE user_id ='$userid' AND acc_type = 'Investment Account'";
                                 $selectResult = mysqli_query($db_con, $query);
-                                if ($row = mysqli_fetch_assoc( $selectResult )){	
-                                    $num = $row['acc_number'];
-                                    echo $num;
-                                } elseif(mysqli_affected_rows ($db_con) == 0){
+                                
+                                while( $row = mysqli_fetch_assoc( $selectResult ) ){
+                                    
+                                    echo "<table><tr><b>{$row['acc_number']}<b></tr></table>";
+                                }	
+                                
+                                if(mysqli_affected_rows ($db_con) == 0){
                                     echo '-';
-                                } else{
-                                    echo 'Error of retrieval of data';
                                 }
                                 ?>
-                                </b>
                             </td>
                         </tr>
                     </table>
