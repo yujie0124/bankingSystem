@@ -218,8 +218,27 @@ if(isset($_POST['submit'])){
 			<tr>
 				<td><label>Deposit Money By (OPTIONAL) : </label></td>
 				<td><select name="depositBy" style=" margin: 10px; background-color: lavender ; height: 30px; width: 300px; font-style:italic;">
-					<option value="intrabank">Intra-bank transfer</option>
-					<option value="interbank">Inter-bank transfer</option>
+					
+
+					<?php 
+							$data = array("intrabank", "interbank");
+							foreach ($data as $value){
+							?>
+							<?php
+    							//selected option
+    							if(isset($_SESSION["addByBank"]) && $_SESSION["addByBank"] == $value){
+    							// selected option
+    						?>
+    							<option value="<?php echo $value; ?>" selected><?php echo $value; echo " transfer"; ?> </option>
+    						<?php 
+								continue;
+   							}?>
+    						<option value="<?php echo $value; ?>" ><?php echo $value; echo " transfer"; ?> </option>
+   							<?php
+								}
+    				?>
+
+
 				</select></td>
 				<td><button type="submit" class="btn btn-success" name="byBank">
                                     <i class="fa fa-check icon"></i>
