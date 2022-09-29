@@ -7,17 +7,27 @@
 }
     $userid =  $_SESSION['UserId'];
 	$username = $_SESSION['UserName'];
+	if(!isset($_SESSION["addByBank"]) && !empty($_SESSION["addByBank"]))
+	{
+		$_SESSION["addByBank"] = "";
+	}
 
 	$acc_name = $acc_type = $acc_number_from = $transfer_amount = '';
 	$errors = array('acc_name' => '', 'acc_type' => '', 'acc_number_from' => '','transfer_amount' => '');
 
-
+if(isset($_POST['byBank'])){
+		$search = $_POST['depositBy'];
+		
+		$_SESSION["addByBank"] = $search;
+	
+		header("location: addInvestAcc.php");
+}
 
 if(isset($_POST['submit'])){
 		
 		$transfer_amount = $_POST['transfer_amount'];
 		// check acc_number_from has enough balance to transfer or not
-		if(!empty($_POST['transfer_amount'])){
+		if(!empty($_POST['transfer_amount']) && $_SESSION["addByBank"] == "intrabank"){
 				// check amount input
 				if(!preg_match('/^[0-9]+$/', $transfer_amount)){
 						$errors['transfer_amount'] = 'Must be valid amount only';
@@ -34,8 +44,6 @@ if(isset($_POST['submit'])){
 
 			}
 		}
-
-
   
 
 		if(array_filter($errors)){
@@ -47,6 +55,7 @@ if(isset($_POST['submit'])){
 			$acc_type = mysqli_real_escape_string($db_con, $_POST['acc_type']);
             $acc_balance = mysqli_real_escape_string($db_con, $_POST['transfer_amount']);
 			$acc_number_from = mysqli_real_escape_string($db_con, $_POST['acc_number_from']);
+			$bank_name = mysqli_real_escape_string($db_con, $_POST['typeBank']);
 
 			$getAccID = "SELECT acc_id from bankacc WHERE acc_number='$acc_number_from' AND user_id='$userid'";
 			$selectResult = mysqli_query($db_con, $getAccID);
@@ -72,8 +81,18 @@ if(isset($_POST['submit'])){
 				$invNum = mysqli_fetch_assoc( $newAccNumcheck );
 				$acc_number_to = $invNum['acc_number'];
 
-				$makeTrans = "INSERT INTO `transaction`(`transaction_number`, `transaction_from`, `transaction_to`, `transaction_amount`, `transaction_ref`, `transaction_date`, `transaction_status`, `user_id`) VALUES
-                ((SELECT LPAD(FLOOR(RAND() * 9999999999.99), 10, '0')),'$acc_number_from','$acc_number_to','$transfer_amount','Transfer to Investment Account', (SELECT CURRENT_TIMESTAMP()), 'Successful', '$userid')";
+				if($_SESSION["addByBank"] == "intrabank"){
+					$makeTrans = "INSERT INTO `transaction`(`transaction_number`, `transaction_from`, `transaction_to`, `transaction_amount`, `transaction_ref`, `transaction_date`, `transaction_status`, `user_id`) VALUES
+					((SELECT LPAD(FLOOR(RAND() * 9999999999.99), 10, '0')),'$acc_number_from','$acc_number_to','$transfer_amount','Intra-Transfer Money into Investment Account', (SELECT CURRENT_TIMESTAMP()), 'Successful', '$userid')";
+
+				}
+				elseif($_SESSION["addByBank"] == "interbank"){
+					$makeTrans = "INSERT INTO `transaction`(`transaction_number`, `transaction_from`, `transaction_to`, `transaction_amount`, `transaction_ref`, `transaction_date`, `transaction_status`, `user_id`) VALUES
+					((SELECT LPAD(FLOOR(RAND() * 9999999999.99), 10, '0')),'$acc_number_from','$acc_number_to','$transfer_amount','Inter-Transfer Money into Investment Account', (SELECT CURRENT_TIMESTAMP()), 'Successful', '$userid')";
+
+				}
+				
+				
 				if(mysqli_query($db_con, $makeTrans)){
 					echo '<script> alert("New transaction history created.") </script>';
 				}
@@ -192,13 +211,26 @@ if(isset($_POST['submit'])){
 			<tr><td><label>Type of Account :</label></td><td>
 			<input type="text" style="font-style:italic; font-size:medium;" name="acc_type" id="acc_type" value="<?php echo 'Investment Account' ?>"></td>
 			</tr>
-			<tr><td><label>Amount to transfer/to deposit (OPTIONAL) : </label></td><td>
-			<input type="number" placeholder="Amount to transfer in" name="transfer_amount" value="RM <?php echo $transfer_amount ?>">
-			<div class="red-text" style="color:red;"><?php echo $errors['transfer_amount']; ?></div></td></tr>
+			
             
 			<tr><td></td></tr>
 
-			<tr><td><label for="acc_number_from">Transfer Money From Existing Accounts: </label></td><td>
+			<tr>
+				<td><label>Deposit Money By (OPTIONAL) : </label></td>
+				<td><select name="depositBy" style=" margin: 10px; background-color: lavender ; height: 30px; width: 300px; font-style:italic;">
+					<option value="intrabank">Intra-bank transfer</option>
+					<option value="interbank">Inter-bank transfer</option>
+				</select></td>
+				<td><button type="submit" class="btn btn-success" name="byBank">
+                                    <i class="fa fa-check icon"></i>
+                            </button></td>
+			</tr>
+
+			<?php 
+				if(isset($_SESSION["addByBank"])){
+					if($_SESSION["addByBank"] == "intrabank"){
+			?>
+						<tr><td><label for="acc_number_from" style="font-style: italic;">From Internal Existing Bank Account: </label></td><td>
                         <select name="acc_number_from" value="<?php echo '$acc_number_from' ?>" style=" margin: 10px; background-color: lavender ; height: 30px; width: 300px; font-style:italic;" >
                             <option>Select Account</option>
 							
@@ -229,10 +261,33 @@ if(isset($_POST['submit'])){
 							
 						</select>
 
-						</td></tr>
-						
-			
-			
+			</td></tr>
+			<?php
+					}
+					else{
+						?>
+							<tr><td><label for="acc_number_from" style="font-style: italic;">From External Bank Account</label></td></tr>
+							<tr>
+								<td><label>Name of Bank: </label></td>
+								<td>
+									<input type="text" id="typeBank" name="typeBank" style=" width: 230px;" >
+								</td>
+							</tr>
+							<tr>
+								<td><label>Number of Bank Account: </label></td>
+								<td>
+									<input type="number" id="acc_number_from" name="acc_number_from" style=" width: 230px;" >
+								</td>
+							</tr>
+
+						<?php
+					}
+				}
+			?>
+				<tr><td><label>Amount to transfer/to deposit: </label></td><td>
+				<input type="number" placeholder="Amount to transfer in" name="transfer_amount" value="RM <?php echo $transfer_amount ?>">
+				<div class="red-text" style="color:red;"><?php echo $errors['transfer_amount']; ?></div></td></tr>
+
 			
             </table>
 			<div class="center">
